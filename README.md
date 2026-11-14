@@ -2,6 +2,8 @@
 
 A dashboard that shows how a class is performing. It reads student marks and attendance, works out each student's total, average and grade, and shows the results in charts, tables and individual student reports.
 
+**Live demo:** [Open the dashboard](https://avani-student-analyzer.streamlit.app/)
+
 ## Features
 
 - Class summary with the number of students, class average, pass rate and topper
