@@ -1,0 +1,10 @@
+student_id,name,maths,physics,python,english,attendance,total,average,result,grade
+1,Aarav,78,65.0,82,70,88,295.0,73.75,Pass,B
+2,Diya,92,88.0,95,85,96,360.0,90.0,Pass,A
+3,Kabir,45,52.0,60,58,72,215.0,53.75,Pass,D
+4,Meera,50,24.0,35,67,98,176.0,44.0,Pass,D
+5,Devika,90,98.0,78,67,34,333.0,83.25,Pass,B
+6,Kiran,45,65.0,72,90,87,272.0,68.0,Pass,C
+7,Ammu,89,76.0,35,46,67,246.0,61.5,Pass,C
+8,Akash,56,68.25,84,90,92,298.25,74.5625,Pass,B
+9,Dev,56,78.0,39,40,91,213.0,53.25,Pass,D

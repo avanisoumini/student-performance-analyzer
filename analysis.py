@@ -21,3 +21,9 @@ conditions = [
 grades = ["A", "B", "C", "D"]
 df["grade"] = np.select(conditions, grades, default="F")
 print(df[["name", "average", "grade"]])
+topper = df.loc[df["average"].idxmax()]
+print(topper["name"], topper["average"])
+print(df[subjects].mean())
+print(df["grade"].value_counts())
+print(df["result"].value_counts())
+df.to_csv("data/students_analysed.csv", index=False)
