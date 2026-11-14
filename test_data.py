@@ -14,5 +14,7 @@ assert df["attendance"].between(0, 100).all(), "Attendance is outside 0-100"
 
 # Test 4: no student should appear twice
 assert not df["student_id"].duplicated().any(), "Duplicate student found"
+# Test 5: every grade must be A, B, C, D or F
+assert df["grade"].isin(["A","B","C","D","F"]).all(), "something's wrong"
 
 print("All tests passed")
