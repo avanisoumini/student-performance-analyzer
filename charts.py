@@ -21,3 +21,15 @@ plt.xlabel("Grade")
 plt.ylabel("Number of students")
 plt.savefig("charts/grade_distribution.png")
 plt.show()
+plt.scatter(df["attendance"], df["average"])
+plt.scatter(df["attendance"], df["average"])
+
+for i in range(len(df)):
+    plt.text(df["attendance"][i], df["average"][i], df["name"][i])
+
+plt.title("Attendance vs Average Marks")
+plt.title("Attendance vs Average Marks")
+plt.xlabel("Attendance (%)")
+plt.ylabel("Average marks")
+plt.savefig("charts/attendance_vs_average.png")
+plt.show()
