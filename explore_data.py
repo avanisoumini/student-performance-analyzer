@@ -1,3 +1,4 @@
+#cleaning csv files
 import pandas as pd 
 df = pd.read_csv("data/student_messy.csv")
 print(df.shape)
