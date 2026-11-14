@@ -1,43 +1,49 @@
-import pandas as pd 
-import matplotlib.pyplot as plt
+import altair as alt
+import pandas as pd
+import streamlit as st
 
-df = pd.read_csv("data/students_analysed.csv")
-subjects = ["maths", "physics", "python", "english"]
-averages = df[subjects].mean()
+SUBJECTS = ["maths", "physics", "python", "english"]
+GRADES = ["A", "B", "C", "D", "F"]
 
-plt.bar(subjects, averages)
-plt.title("Class Average by Subject")
-plt.xlabel("Subject")
-plt.ylabel("Average marks")
-plt.savefig("charts/subject_averages.png")
-plt.show()
-grade_counts = df["grade"].value_counts()
+PINK = "#FF6F91"
+PURPLE = "#9B8CFF"
+MINT = "#4DD0B1"
+SUN = "#FFB86B"
 
-grade_counts = df["grade"].value_counts()
 
-plt.bar(grade_counts.index, grade_counts.values)
-plt.title("Number of Students per Grade")
-plt.xlabel("Grade")
-plt.ylabel("Number of students")
-plt.savefig("charts/grade_distribution.png")
-plt.show()
-plt.scatter(df["attendance"], df["average"])
-plt.scatter(df["attendance"], df["average"])
+def subject_average_chart(df):
+    """Bar chart: class average for each subject."""
+    st.bar_chart(df[SUBJECTS].mean(), color=PINK)
 
-for i in range(len(df)):
-    plt.text(df["attendance"][i], df["average"][i], df["name"][i])
 
-plt.title("Attendance vs Average Marks")
-plt.title("Attendance vs Average Marks")
-plt.xlabel("Attendance (%)")
-plt.ylabel("Average marks")
-plt.savefig("charts/attendance_vs_average.png")
-plt.show()
+def grade_distribution_chart(df):
+    """Bar chart: how many students got each grade (A to F)."""
+    counts = df["grade"].value_counts().reindex(GRADES, fill_value=0)
+    st.bar_chart(counts, color=PURPLE)
 
-plt.bar(df["name"], df["average"])
-plt.title("Average Marks per Student")
-plt.xlabel("Student")
-plt.ylabel("Average marks")
-plt.xticks(rotation=45)
-plt.savefig("charts/student_averages.png")
-plt.show()
+
+def attendance_chart(df):
+    """Scatter plot: attendance vs average marks. Hover to see the name."""
+    chart = (
+        alt.Chart(df)
+        .mark_circle(size=140, color=MINT)
+        .encode(
+            x=alt.X("attendance", title="Attendance (%)", scale=alt.Scale(zero=False)),
+            y=alt.Y("average", title="Average marks", scale=alt.Scale(zero=False)),
+            tooltip=["name", "attendance", "average", "grade"],
+        )
+        .interactive()
+    )
+    st.altair_chart(chart)
+
+
+def student_average_chart(df):
+    """Bar chart: average marks of every student."""
+    st.bar_chart(df.set_index("name")["average"], color=SUN)
+
+
+def student_report_chart(df, name):
+    """Bar chart: one student's marks next to the class average."""
+    marks = df.loc[df["name"] == name, SUBJECTS].iloc[0]
+    compare = pd.DataFrame({"Student": marks, "Class average": df[SUBJECTS].mean()})
+    st.bar_chart(compare, color=[PINK, PURPLE], stack=False)
