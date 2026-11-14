@@ -35,3 +35,21 @@ Four interactive charts: class average by subject, grade distribution, attendanc
 ![Student report tab for one student](screenshots/student_report.png)
 
 Pick any student to see their rank, average, grade, result and attendance, their strongest and weakest subject, a low-attendance warning when needed, and a chart comparing their marks with the class average.
+
+## How to run
+
+1. Clone the repository:
+   `git clone https://github.com/avanisoumini/student-performance-analyzer.git`
+2. Go into the project folder:
+   `cd student-performance-analyzer`
+3. Install the libraries:
+   `pip install -r requirements.txt`
+4. Start the dashboard:
+   `streamlit run app.py`
+
+## Data pipeline
+
+1. `explore_data.py` cleans the raw data (`data/students_messy.csv`) and saves `data/students_clean.csv`.
+2. `analysis.py` adds totals, averages, grades and results, and saves `data/students_analysed.csv`.
+3. `app.py` shows the dashboard using the analysed data.
+4. `test_data.py` checks that the data is valid.
